@@ -96,7 +96,7 @@ else
   ACTOR=$GITHUB_ACTOR
 fi
 PROTOCOL="https" 
-if [[ $INPUT_USE_HTTP]]; then
+if [[ $INPUT_USE_HTTP ]]; then
   PROTOCOL="http"
 fi
 
