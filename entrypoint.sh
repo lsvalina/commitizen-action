@@ -95,6 +95,10 @@ if [[ $INPUT_ACTOR ]]; then
 else
   ACTOR=$GITHUB_ACTOR
 fi
+PROTOCOL="https" 
+if [[ $INPUT_USE_HTTP]]; then
+  PROTOCOL="http"
+fi
 
 REV="$(cz version --project)"
 if [[ $REV == "$PREV_REV" ]]; then
@@ -117,7 +121,7 @@ if [[ $INPUT_PUSH == 'true' ]]; then
     echo "You probably want to run on push to your default branch instead." >&2
   else
     echo "Pushing to branch..."
-    REMOTE_REPO="https://${ACTOR}:${INPUT_GITHUB_TOKEN}@${GITHUB_DOMAIN}/${INPUT_REPOSITORY}.git"
+    REMOTE_REPO="${PROTOCOL}://${ACTOR}:${INPUT_GITHUB_TOKEN}@${GITHUB_DOMAIN}/${INPUT_REPOSITORY}.git"
     git pull "$REMOTE_REPO" "$INPUT_BRANCH"
     git push "$REMOTE_REPO" "HEAD:${INPUT_BRANCH}" --tags
   fi

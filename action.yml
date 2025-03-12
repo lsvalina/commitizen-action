@@ -106,3 +106,7 @@ inputs:
   manual_version:
     description: "Manually specify the version to bump to"
     required: false
+  use_http:
+    description: "Use http:// insted of https:// for pushing"
+    required: false
+    default: "false"
